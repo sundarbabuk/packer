@@ -20,6 +20,18 @@ pipeline {
             }
         }
 
+        stage("Packer Format") {
+            steps {
+                sh "/var/jenkins_home/packer fmt ."
+            }
+        }
+
+        stage("Packer Validate") {
+            steps {
+                sh "/var/jenkins_home/packer validate ."
+            }
+        }
+
         stage("Build Hardened AMI Image") {
             steps {
                 sh "/var/jenkins_home/packer build hardened-ami-image.pkr.hcl"

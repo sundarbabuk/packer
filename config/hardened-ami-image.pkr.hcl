@@ -79,4 +79,40 @@ build {
   sources = [
     "source.amazon-ebs.cis-ami"
   ]
+
+  provisioner "shell" {
+  environment_vars = [
+    "FOO=hello world",
+  ]
+  inline = [
+    "echo Installing Redis",
+    "sleep 10",
+    "sudo apt-get update",
+    "sudo apt-get install -y redis-server",
+    "echo \"FOO is $FOO\" > example.txt",
+  ]
 }
+
+  provisioner "shell" {
+    inline = [
+      "echo Installing AWS Inspector",
+      "sleep 10",
+      "wget https://inspector-agent.amazonaws.com/linux/latest/install",
+      "sudo bash install",
+      "rm install",
+      ]
+    }
+
+  provisioner "shell" {
+    inline = [
+      "echo Installing Falco",
+      "sleep 10",
+      "curl -s https://falco.org/repo/falcosecurity-3672BA8F.asc | apt-key add -",
+      "echo echo "deb https://download.falco.org/packages/deb stable main" | tee -a /etc/apt/sources.list.d/falcosecurity.list",
+      "sudo apt-get update -y",
+      "sudo apt-get -y install linux-headers-$(uname -r)",
+      "sudo apt-get install -y falco",
+      ]
+    }
+  }
+
