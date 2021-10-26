@@ -75,7 +75,7 @@ source "amazon-ebs" "cis-ami" {
 }
 
 build {
-  name = "Hardened AMI Image"
+  name = "Hardened AMI Image (CIS)"
   sources = [
     "source.amazon-ebs.cis-ami"
   ]
