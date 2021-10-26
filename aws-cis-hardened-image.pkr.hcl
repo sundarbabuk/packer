@@ -75,7 +75,7 @@ source "amazon-ebs" "cis-ami" {
 }
 
 build {
-  name = "learn-packer"
+  name = "Hardened AMI Image"
   sources = [
     "source.amazon-ebs.cis-ami"
   ]
