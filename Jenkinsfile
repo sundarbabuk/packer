@@ -14,14 +14,16 @@ pipeline {
 
     stages {
       
+        stage("Packer Initialize") {
+            steps {
+                sh "/var/jenkins_home/packer init ."
+            }
+        }
+
         stage("Build Hardened AMI Image") {
             steps {
-                sh """
-                #!/bin/bash
-                cd config
-                /var/jenkins_home/packer init .
-                /var/jenkins_home/packer build /var/jenkins_home/hardened-ami-image.pkr.hcl
-                """
+                sh "/var/jenkins_home/packer build hardened-ami-image.pkr.hcl"
+                
                 }            
             }
         }
