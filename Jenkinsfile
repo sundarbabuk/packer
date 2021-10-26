@@ -20,7 +20,7 @@ pipeline {
                 #!/bin/bash
                 cd config
                 /var/jenkins_home/packer init .
-                /var/jenkins_home/packer build aws-cis-hardened-image.pkr.hcl
+                /var/jenkins_home/packer build /var/jenkins_home/hardened-ami-image.pkr.hcl
                 """
                 }            
             }
