@@ -18,6 +18,7 @@ pipeline {
             steps {
                 sh """
                 #!/bin/bash
+                cd config
                 /var/jenkins_home/packer init .
                 /var/jenkins_home/packer build aws-cis-hardened-image.pkr.hcl
                 """
